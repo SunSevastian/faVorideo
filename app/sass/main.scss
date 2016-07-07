@@ -1,0 +1,146 @@
+// Переменные
+$logoTextColor: #fff;
+$transition: all .2s;
+
+
+
+
+
+
+// Миксины
+$small: 480px;
+$large: 1025px;
+
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: $small) { @content; }
+  }
+  @else if $media == iPad {
+    @media only screen and (min-width: $small + 1) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == PC {
+    @media only screen and (min-width: $large) { @content; }
+  }
+}
+	//   @include respond-to(handhelds) { font-size: 41px; color: red;}
+  //   @include respond-to(medium-screens) { font-size: 41px; color: green; }
+  //   @include respond-to(wide-screens) { font-size: 11px; color: brown; }
+// ======***Media Mixin with example***========
+
+
+
+
+
+// Верстка
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+	height: 100%
+}
+
+
+.logo {
+  color: $logoTextColor;
+  height: 85vh;
+  text-align: center;
+  background-image: linear-gradient(90deg, rgb(52, 73, 94) 25%, rgb(243, 66, 53) 100%);
+	&__h1 {
+		margin: 0;
+		font-size: 50px;
+		position: relative;
+		top: 120px;
+	}
+	&__description{
+		@extend .logo__h1;
+		font-size: 21px;
+		margin-top: 60px;
+		letter-spacing: 3px;
+	}
+}
+
+
+.tabMenu {
+	height: 16vh;
+	background-color: #fff;
+	position: relative;
+	box-shadow: 0px 9px 6px -9px rgba(82, 82, 82, 0.3);
+  // box-shadow: 0px 50px 35px -35px rgb(136, 42, 35);
+	p {
+		@extend .logo__h1;
+		top: 35%;
+		color: rgb(243, 66, 53);
+		text-align: center;
+		font-size: 21px;
+	}
+}
+
+.contclipCard{
+	background-color: #E8F1F5;
+	padding: 100px 50px;
+	@include respond-to(iPad) { padding: 50px 25px; }
+	@include respond-to(mobile) { padding: 50px 25px; }
+}
+
+
+.clipCard{
+	min-height: 450px;
+	background-color: #fff;
+	margin: 20px 0 20px;
+	border-radius: 8px;
+	box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.1);
+	margin-bottom: 25px;
+	padding: 10px;
+	&__h2 {
+		font-weight: 400;
+		color: #ca443e;
+		@include respond-to(mobile) { font-size: 18px; }
+    @include respond-to(iPad) { font-size: 22px; }
+    @include respond-to(PC) { font-size: 18px; }
+	}
+	iframe {
+		width: 100%;
+		height: 300px;
+		margin-bottom: 10px
+	}
+}	
+
+
+.videoUI{
+	background-color: #fff;
+	height: 80px;
+	width: 100%;
+	
+	&__like{
+		position: relative;
+		border-radius: 8px;
+		display: inline-block;
+		border:1px solid #cddbee;
+		padding: 5px 10px 5px 35px;
+		color: #799999;
+		box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.1);
+		cursor: pointer;
+		transition: $transition;
+		&:hover{
+			box-shadow: none;
+			background-color: #E8F1F5
+		}
+		&::before{
+			content: '';
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			background-image: url('../img/videoUI__like.png'); 
+      background-repeat: no-repeat;
+      background-size: 16px 16px;
+		}
+	}
+}
+
+
+.col-md-4{
+	@include respond-to(iPad) { padding-left: 5px; padding-right: 5px; }
+}

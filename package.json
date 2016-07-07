@@ -8,7 +8,9 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-sass": "^2.3.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

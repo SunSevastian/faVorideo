@@ -1,1 +1,1 @@
-h2,h3,h6{color:#333;font-size:16px;background-color:#ccc;display:block}.fgkjk{display:flex}body{background:#000;color:#fff}footer{background-color:#333}section{background-color:#fff}article{background-color:#777}
+h2,h3,h6{color:#333;font-size:16px;background-color:#ccc;display:block}.fgkjk{display:flex}*{margin:0;padding:0}body{height:100%}.logo{color:#fff;height:85vh;text-align:center;background-image:linear-gradient(90deg,#34495e 25%,#f34235 100%)}.logo__description,.logo__h1{margin:0;font-size:30px;position:relative;top:120px}

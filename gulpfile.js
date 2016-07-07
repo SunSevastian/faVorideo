@@ -15,7 +15,7 @@ var lr = require('tiny-lr'), // Минивебсервер для livereload
     server = lr();
 
 gulp.task('sass', function(){
-    gulp.src('app/sass/*.sass')
+    gulp.src('app/sass/*.scss')
       .pipe(sass())
       .pipe(gulp.dest('app/css'))
 });
@@ -33,5 +33,5 @@ gulp.task('default',function(){
 // Объединение CSS и их минификация
 
 gulp.task('watch', function(){
-    gulp.watch('app/css/*.css', ['default'])
+    gulp.watch('app/sass/*.scss', ['sass'])
 });

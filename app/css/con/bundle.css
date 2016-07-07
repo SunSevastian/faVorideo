@@ -19,15 +19,20 @@ h6{
 .fgkjk{
 	display: flex;
 }
+* {
+  margin: 0;
+  padding: 0; }
+
 body {
-  background: #000;
-  color: #fff; }
+  height: 100%; }
 
-footer {
-  background-color: #333; }
-
-section {
-  background-color: #FFF; }
-
-article {
-  background-color: #777; }
+.logo {
+  color: #fff;
+  height: 85vh;
+  text-align: center;
+  background-image: linear-gradient(90deg, #34495e 25%, #f34235 100%); }
+  .logo__h1, .logo__description {
+    margin: 0;
+    font-size: 30px;
+    position: relative;
+    top: 120px; }
