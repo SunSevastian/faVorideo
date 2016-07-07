@@ -1,0 +1,33 @@
+h2 {
+	color: #333;
+	font-size: 16px;
+	background-color: #ccc;
+	display: block;
+}
+h3 {
+	color: #333;
+	font-size: 16px;
+	background-color: #ccc;
+	display: block;
+}
+h6{
+	color: #333;
+	font-size: 16px;
+	background-color: #ccc;
+	display: block;
+}
+.fgkjk{
+	display: flex;
+}
+body {
+  background: #000;
+  color: #fff; }
+
+footer {
+  background-color: #333; }
+
+section {
+  background-color: #FFF; }
+
+article {
+  background-color: #777; }

@@ -1,0 +1,25 @@
+{
+  "name": "favorideo",
+  "version": "1.0.0",
+  "description": "VIdeo site",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SunSevastian/faVorideo.git"
+  },
+  "author": "SunSevastian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SunSevastian/faVorideo/issues"
+  },
+  "homepage": "https://github.com/SunSevastian/faVorideo#readme"
+}
