@@ -1,7 +1,7 @@
 // Переменные
 $logoTextColor: #fff;
-$transition: all .2s;
-
+$transition: all .3s;
+$bgc--gradient: linear-gradient(90deg, rgb(52, 73, 94) 25%, rgb(243, 66, 53) 100%);
 
 
 
@@ -22,10 +22,27 @@ $large: 1025px;
     @media only screen and (min-width: $large) { @content; }
   }
 }
-	//   @include respond-to(handhelds) { font-size: 41px; color: red;}
-  //   @include respond-to(medium-screens) { font-size: 41px; color: green; }
-  //   @include respond-to(wide-screens) { font-size: 11px; color: brown; }
+	//   @include respond-to(mobile) { font-size: 41px; color: red;}
+  //   @include respond-to(iPad) { font-size: 41px; color: green; }
+  //   @include respond-to(PC) { font-size: 11px; color: brown; }
 // ======***Media Mixin with example***========
+
+
+
+
+
+// Шрифты
+$font--laSpacino: LaSpacinoLite-Regular;
+$font--standart:  Arial;
+
+
+@font-face {
+  font-family: LaSpacinoLite-Regular;
+  src: url(../fonts/LaSpacinoLite-Regular.otf) format("opentype");
+}
+ 
+
+
 
 
 
@@ -47,18 +64,25 @@ body {
   color: $logoTextColor;
   height: 85vh;
   text-align: center;
-  background-image: linear-gradient(90deg, rgb(52, 73, 94) 25%, rgb(243, 66, 53) 100%);
+  background-image: $bgc--gradient;
+  @include respond-to(mobile) { height: 50vh;}
+  @include respond-to(iPad) { height: 70vh;}
 	&__h1 {
-		margin: 0;
-		font-size: 50px;
-		position: relative;
 		top: 120px;
+		margin: 0;
+		font-size: 200px;
+		position: relative;
+		font-family: $font--standart;
+		@include respond-to(mobile) { font-size: 70px; top: 120px;}
+    @include respond-to(iPad) { font-size: 100px; top: 120px; }
 	}
 	&__description{
 		@extend .logo__h1;
 		font-size: 21px;
-		margin-top: 60px;
-		letter-spacing: 3px;
+		@include respond-to(mobile) { font-size: 12px;}
+		@include respond-to(iPad) { font-size: 18px;}
+		letter-spacing: 2px;
+		font-weight: 100;
 	}
 }
 
@@ -94,24 +118,26 @@ body {
 	box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.1);
 	margin-bottom: 25px;
 	padding: 10px;
+	border: 1px solid #cddbee;
+	@include respond-to(iPad) { min-height: 450px; }
 	&__h2 {
 		font-weight: 400;
-		color: #ca443e;
+		color: #FF7777;
 		@include respond-to(mobile) { font-size: 18px; }
-    @include respond-to(iPad) { font-size: 22px; }
+    @include respond-to(iPad) { font-size: 14px;  margin-bottom: 40px;}
     @include respond-to(PC) { font-size: 18px; }
+    margin-bottom: 20px;
 	}
 	iframe {
 		width: 100%;
 		height: 300px;
-		margin-bottom: 10px
+		margin-bottom: 15px
 	}
 }	
 
 
 .videoUI{
 	background-color: #fff;
-	height: 80px;
 	width: 100%;
 	
 	&__like{
@@ -119,25 +145,70 @@ body {
 		border-radius: 8px;
 		display: inline-block;
 		border:1px solid #cddbee;
-		padding: 5px 10px 5px 35px;
+		padding: 5px 5px 5px 25px;
 		color: #799999;
 		box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.1);
 		cursor: pointer;
+		margin-right: 12px;
 		transition: $transition;
+		@include respond-to(iPad) {     padding: 3px 5px 3px 25px;    margin-right: 6px;    font-size: 12px;}
+		@include respond-to(mobile) { margin-right: 9px;}	
 		&:hover{
 			box-shadow: none;
-			background-color: #E8F1F5
+			background-color: #E8F1F5;
+			color: rgb(52, 73, 94);
+			&::before{
+				color: rgb(52, 73, 94);
+				transition: $transition;
+			}
 		}
+
 		&::before{
-			content: '';
+			color: #799999;
+			font-size: 16px;
+			font-family: FontAwesome;
+   		content: "\f004";
+			// content: '';
 			position: absolute;
-			width: 20px;
-			height: 20px;
-			background-image: url('../img/videoUI__like.png'); 
-      background-repeat: no-repeat;
-      background-size: 16px 16px;
+			left: 3px;
+    	top: 3px;
+    	@include respond-to(iPad) { left: 9px; font-size: 12px;}
+
 		}
 	}
+
+	&__comment{
+		@extend .videoUI__like;
+		border: none;
+		cursor: default;
+		box-shadow: none;
+		&:hover{
+			background-color: transparent;
+			color: rgb(52, 73, 94);
+		}
+		&::before{
+			content: "\f27a";
+		}
+	}
+
+	&__saw{
+		@extend .videoUI__comment;
+		&::before{
+			content: "\f06e ";
+		}
+	}
+
+	&__share{
+		@extend .videoUI__like;
+		// text-transform: uppercase;
+		// min-width:50px;
+		// background-image: $bgc--gradient;
+		// padding: 5px 10px;
+		&::before{
+			content: "\f1e0";
+		}
+	}
+
 }
 
 
