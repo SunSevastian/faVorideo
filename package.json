@@ -9,6 +9,7 @@
     "gulp-sass": "^2.3.2"
   },
   "devDependencies": {
+    "browser-sync": "^2.13.0",
     "gulp-sass": "^2.3.2"
   },
   "scripts": {
