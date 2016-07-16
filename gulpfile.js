@@ -19,8 +19,11 @@ gulp.task('sass', function(){
     gulp.src('app/sass/*.scss')
       .pipe(sass())
       .pipe(gulp.dest('app/css'))
-      .pipe(browserSync.reload({stream: true}))
+      .pipe(browserSync.reload({stream: true})) //автоматический релоад стрим при изменениях.
 });
+// Компилируем Sass в Css. в нашем случае Scss
+
+
 
 gulp.task('default',function(){
     gulp.src('app/css/*.css') 
@@ -34,6 +37,8 @@ gulp.task('default',function(){
 });
 // Объединение CSS и их минификация
 
+
+
 gulp.task('browser-sync', function(){
   browserSync({
     server: {
@@ -42,7 +47,25 @@ gulp.task('browser-sync', function(){
     notify: false
   });
 });
+// Сервер 
+
+
+
+gulp.task('scripts', function(){
+  return gulp.src([
+      'app/libs/jquery/dist/jquery.min.js',
+      'app/libs/magnific-popup/dist/jquery.magnific-popup.min.js',
+    ])
+  .pipe(concat('libs.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest('app/js'));
+});
+//Конкатинируем(объединяем) скрипты , выбирая их по массиву, минифицируем и кладем под новым именем в нужное место
+
+
 
 gulp.task('watch',['browser-sync', 'sass'], function(){
-    gulp.watch('app/sass/*.scss', ['sass'])
+    gulp.watch('app/sass/*.scss', ['sass']);
+    gulp.watch('app/**/*.html', browserSync.reload);// Запускает релоад
+    gulp.watch('app/js/*.js', browserSync.reload);// при изменениях в html and js файлах
 });
