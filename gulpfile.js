@@ -16,7 +16,10 @@ var lr             = require('tiny-lr'), // Минивебсервер для li
     server         = lr();
 
 gulp.task('sass', function(){
-    gulp.src('app/sass/*.scss')
+    gulp.src([
+      'app/sass/**/*.scss',
+      'app/sass/**/*.sass'
+      ])
       .pipe(sass())
       .pipe(gulp.dest('app/css'))
       .pipe(browserSync.reload({stream: true})) //автоматический релоад стрим при изменениях.
@@ -25,16 +28,16 @@ gulp.task('sass', function(){
 
 
 
-gulp.task('default',function(){
-    gulp.src('app/css/*.css') 
-      .pipe(concat('css/con/bundle.css'))
-      .pipe(gulp.dest('app/'))
-      .pipe(csso())
-      .pipe(rename('css/min/bundle.min.css'))
-      .pipe(gulp.dest('app/'))
-      .pipe(notify(' - Чык-Чырык!!!'))
+// gulp.task('default',function(){
+//     gulp.src('app/css/*.css') 
+//       .pipe(concat('css/con/bundle.css'))
+//       .pipe(gulp.dest('app/'))
+//       .pipe(csso())
+//       .pipe(rename('css/min/bundle.min.css'))
+//       .pipe(gulp.dest('app/'))
+//       .pipe(notify(' - Чык-Чырык!!!'))
 
-});
+// });
 // Объединение CSS и их минификация
 
 
@@ -64,7 +67,16 @@ gulp.task('scripts', function(){
 
 
 
-gulp.task('watch',['browser-sync', 'sass'], function(){
+gulp.task('css-libs', ['sass'], function(){
+  return gulp.src('app/css/libs.css')
+  .pipe(csso())
+  .pipe(rename({suffix: '.min'}))
+  .pipe(gulp.dest('app/css'));
+});
+//минифицируем выбранный файл, переименовывая его, добавляя суфикс min и помещая в нужное место
+
+
+gulp.task('watch',['browser-sync', 'css-libs', 'scripts'], function(){
     gulp.watch('app/sass/*.scss', ['sass']);
     gulp.watch('app/**/*.html', browserSync.reload);// Запускает релоад
     gulp.watch('app/js/*.js', browserSync.reload);// при изменениях в html and js файлах
