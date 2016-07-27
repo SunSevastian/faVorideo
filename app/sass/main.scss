@@ -215,3 +215,7 @@ body {
 .col-md-4{
 	@include respond-to(iPad) { padding-left: 5px; padding-right: 5px; }
 }
+.chimichanga{
+	display: flex;
+	border-radius:4px;
+}

@@ -1,0 +1,38 @@
+h2 {
+	color: #333;
+	font-size: 16px;
+	background-color: #ccc;
+	display: block;
+}
+h3 {
+	color: #333;
+	font-size: 16px;
+	background-color: #ccc;
+	display: block;
+}
+h6{
+	color: #333;
+	font-size: 16px;
+	background-color: #ccc;
+	display: block;
+}
+.fgkjk{
+	display: flex;
+}
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  height: 100%; }
+
+.logo {
+  color: #fff;
+  height: 85vh;
+  text-align: center;
+  background-image: linear-gradient(90deg, #34495e 25%, #f34235 100%); }
+  .logo__h1, .logo__description {
+    margin: 0;
+    font-size: 30px;
+    position: relative;
+    top: 120px; }

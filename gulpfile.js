@@ -13,6 +13,10 @@ var lr             = require('tiny-lr'), // Минивебсервер для li
     notify         = require('gulp-notify'),// всплывающее сообщение
     sass           = require('gulp-sass'), // компилятор 
     browserSync    = require('browser-sync'), //Сервер
+    del            = require('del') // Удалятор
+    imagemin       = require('gulp-imagemin')
+    pngquant       = require('imagemin-pngquant')
+    autoprefixer   = require('gulp-autoprefixer')
     server         = lr();
 
 gulp.task('sass', function(){
@@ -21,6 +25,7 @@ gulp.task('sass', function(){
       'app/sass/**/*.sass'
       ])
       .pipe(sass())
+      .pipe(autoprefixer(['last 15 version','> 1%','ie 8', 'ie 7'], {cascade: true }))
       .pipe(gulp.dest('app/css'))
       .pipe(browserSync.reload({stream: true})) //автоматический релоад стрим при изменениях.
 });
@@ -50,7 +55,7 @@ gulp.task('browser-sync', function(){
     notify: false
   });
 });
-// Сервер 
+// Сервер, директорией которого является указанная папка 
 
 
 
@@ -74,10 +79,55 @@ gulp.task('css-libs', ['sass'], function(){
   .pipe(gulp.dest('app/css'));
 });
 //минифицируем выбранный файл, переименовывая его, добавляя суфикс min и помещая в нужное место
+//перед выполнением функции, выполняем сасс-таск.
+//В watch соответсвенно меняем таск 'sass' на таск 'css-libs'
 
+
+
+gulp.task('clean', function(){
+  return del.sync('dist')
+});
+
+
+gulp.task('img', function() {
+  return gulp.src('app/img/**/*')
+  .pipe(imagemin({
+    interlaced: true,
+    progressive: true,
+    svgoPlugins: [{removeViewBox: false}],
+    une: [pngquant()]
+  }))
+  .pipe(gulp.dest('dist/img'));
+});
 
 gulp.task('watch',['browser-sync', 'css-libs', 'scripts'], function(){
     gulp.watch('app/sass/*.scss', ['sass']);
     gulp.watch('app/**/*.html', browserSync.reload);// Запускает релоад
     gulp.watch('app/js/*.js', browserSync.reload);// при изменениях в html and js файлах
+});
+
+
+
+gulp.task('build', ['clean','img', 'sass', 'scripts'], function(){
+
+  var buildCss = gulp.src([
+      'app/css/main.css',
+      'app/css/libs.min.css'
+    ])
+  .pipe(gulp.dest('dist/css'))
+
+  var buildFonts = gulp.src([
+      'app/fonts/**/*'
+    ]) 
+  .pipe(gulp.dest('dist/fonts'))
+
+  var buildJs = gulp.src('app/js/**/*')
+  .pipe(gulp.dest('dist/js'))
+
+  var buildHTML = gulp.src('app/*.html')
+  .pipe(gulp.dest('dist'))
+
+  var buildPHP = gulp.src('app/*.php')
+  .pipe(gulp.dest('dist'))
+  ;
 });
