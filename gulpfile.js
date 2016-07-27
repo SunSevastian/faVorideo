@@ -85,7 +85,7 @@ gulp.task('css-libs', ['sass'], function(){
 
 
 gulp.task('clean', function(){
-  return del.sync('dist')
+  return del.sync('favorTheme')
 });
 
 
@@ -97,7 +97,7 @@ gulp.task('img', function() {
     svgoPlugins: [{removeViewBox: false}],
     une: [pngquant()]
   }))
-  .pipe(gulp.dest('dist/img'));
+  .pipe(gulp.dest('favorTheme/img'));
 });
 
 gulp.task('watch',['browser-sync', 'css-libs', 'scripts'], function(){
@@ -112,22 +112,30 @@ gulp.task('build', ['clean','img', 'sass', 'scripts'], function(){
 
   var buildCss = gulp.src([
       'app/css/main.css',
-      'app/css/libs.min.css'
+      'app/css/libs.min.css',
+      'app/css/min/bootstrap-grid-3.3.1.min.css'
     ])
-  .pipe(gulp.dest('dist/css'))
+  .pipe(gulp.dest('favorTheme/css'))
 
   var buildFonts = gulp.src([
       'app/fonts/**/*'
     ]) 
-  .pipe(gulp.dest('dist/fonts'))
+  .pipe(gulp.dest('favorTheme/fonts'))
 
   var buildJs = gulp.src('app/js/**/*')
-  .pipe(gulp.dest('dist/js'))
+  .pipe(gulp.dest('favorTheme/js'))
 
   var buildHTML = gulp.src('app/*.html')
-  .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest('favorTheme'))
 
   var buildPHP = gulp.src('app/*.php')
-  .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest('favorTheme'))
+
+  var buildPNG = gulp.src('app/*.png')
+  .pipe(gulp.dest('favorTheme'))
+
+  var buildStyleCss = gulp.src('app/css/main.css')
+  .pipe(rename('style.css'))
+  .pipe(gulp.dest('favorTheme'))
   ;
 });

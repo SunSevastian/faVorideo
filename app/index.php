@@ -4,24 +4,34 @@
 	<div class="container-fluid contclipCard">
 	<div class="row">
 
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-		<div class="col-md-4  col-sm-6 col-xs-12">
-			<article class="clipCard">				
+			<div class="col-md-4  col-sm-6 col-xs-12">
+			<article class="clipCard">	
+
 				<div class="clipCard__video">
-					<iframe src="https://www.youtube.com/embed/clfu2A_TEjo" frameborder="0" allowfullscreen></iframe>
+					<?php the_post(); ?>
+					<!-- <iframe src="https://www.youtube.com/embed/clfu2A_TEjo" frameborder="0" allowfullscreen></iframe> -->
 				</div>
-				<a href="#" class="clipCard__a"><h2 class="clipCard__h2">Sonny Flame - <br> Rumba (by Boier Bibescu) 
-					</h2></a>
-				<div class="videoUI">
+
+				<a href="<?php the_permalink();?>" class="clipCard__a">
+					<h2 class="clipCard__h2"><?php the_title(); ?></h2>
+				</a>
+
+				<!-- <div class="videoUI">
 					<p class="videoUI__like">1234</p>
 					<div class="videoUI__comment">141</div>
 					<div class="videoUI__saw">7308</div>
 					<div class="videoUI__share">share</div>
-				</div>
-			</article>
-		</div>		
+				</div> -->
 
-		<div class="col-md-4  col-sm-6 col-xs-12">
+			</article>
+			</div>		
+
+		<?php endwhile; ?>
+		<?php endif; ?>
+
+		<!-- <div class="col-md-4  col-sm-6 col-xs-12">
 			<article class="clipCard">				
 				<div class="clipCard__video">
 					<iframe src="https://www.youtube.com/embed/BfFK1oQaO80?list=RDBfFK1oQaO80" frameborder="0" allowfullscreen></iframe>
@@ -83,7 +93,7 @@
 					<div class="videoUI__share">share</div>
 				</div>
 			</article>
-		</div>
+		</div> -->
 
 	</div>
 	</div>
